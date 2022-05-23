@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "React app name: ";
+read react_app_name;
+export react_app_name;
+echo "Amplify project name: ";
+read amplify_project_name;
+export amplify_project_name;
+echo "Amplify env name: ";
+read amplify_env_name;
+export amplify_env_name;
+
+echo "Creating React app...";
+npx create-react-app $react_app_name --template typescript;
+echo "React app created!";
+cd $react_app_name;
+
+echo "Initializing Amplify...";
+../amplify-setup.exp
+echo "Amplify initialized!";
+
+echo "Exporting Amplify project to CDK...";
+amplify export --out ../amplify-demo-infra
+echo "Amplify project exported to CDK!";
+
+npm install aws-amplify;
+npm install @aws-amplify/ui-react;
