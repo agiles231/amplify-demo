@@ -1,0 +1,9 @@
+#!/bin/bash
+
+USER_INPUT=$1
+
+while read -r -u 3 line; do
+	echo "$line";
+	read -n 1
+	eval $line;
+done 3< test;
